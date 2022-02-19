@@ -1,0 +1,45 @@
+{% load custom_filters %}
+
+{% with	sections="feed posts follow logout"|string_list current_page=request.path|get_page hide_for="login signup"|string_list %}
+
+<div class="col-8">
+	<div class="row mt-2 bg-primary bg-gradient text-white">
+		<div class="col fw-bold">
+			LITReview | {{ request.user }}
+		</div>
+		{% if current_page not in hide_for %}
+		{% for section in sections %}
+		<div class="col-1">
+			{% if current_page == section %}
+			<div class="fw-bold">{{ section }}</div>
+			{% else %}
+			<a href="{% url section %}" class="text-decoration-none text-white">{{ section }}</a>
+			{% endif %}
+		</div>
+		{% endfor %}
+		{% endif %}
+	</div>
+</div>
+
+{% endwith %}
+<!-- 
+{% with	sections="feed posts follow logout"|string_list current_page=request.path|get_page hide_for="login signup"|string_list %}
+
+<div class="col-8">
+	<div class="row mt-2 bg-primary bg-gradient text-white">
+		<div class="col fw-bold">
+			LITReview | {{ request.user }} | {{ current_page }}
+		</div>
+		{% for section in sections %}
+		<div class="col-1">
+			{% if current_page == section %}
+			<div>{{ section }}</div>
+			{% elif current_page not in hide_for %}
+			<a href="{% url section %}" class="text-decoration-none text-white">{{ section }}</a>
+			{% endif %}
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% endwith %} -->

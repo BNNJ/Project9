@@ -1,0 +1,27 @@
+{% extends "litreview/base.html" %}
+{% load custom_filters %}
+
+
+{% block content %}
+{% with current_page=request.path|get_page %}
+<div class="col-8">
+	<div class="row mb-4">
+		<div class="col d-grid">
+			<a href="{% url 'create_review' %}" class="btn btn-primary">Create Review</a>
+		</div>
+		<div class="col d-grid">
+			<a href="{% url 'create_ticket' %}" class="btn btn-primary">Create Ticket</a>
+		</div>
+	</div>
+	{% for post in posts %}
+		{% if post.content_type == 'ticket' %}
+			{% include 'litreview/ticket/ticket.html' with ticket=post user=request.user page=current_page %}
+		{% elif post.content_type == 'review' %}
+			{% include 'litreview/review/review.html' with review=post user=request.user page=current_page %}
+		{% endif %}
+	{% empty %}
+		<p>Move on, nothing to see here</p>
+	{% endfor %}
+</div>
+{% endwith %}
+{% endblock %}

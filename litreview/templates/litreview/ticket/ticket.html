@@ -1,0 +1,58 @@
+{% extends 'litreview/card_base.html' %}
+
+{% block content%}
+<div class="row border-bottom mt-2">
+	<div class="col">
+		{% if user == ticket.user %}
+		<p>You have requested a review</p>
+		{% else %}
+		<p>{{ ticket.user }} has requested a review</p>
+		{% endif %}
+	</div>
+	<div class="col-auto">
+		<p>{{ ticket.time_created }}</p>
+	</div>
+</div>
+
+<div class="row mt-2">
+	<div class="col">
+		<p>{{ ticket.title }}</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col">
+		{{ ticket.description }}
+	</div>
+	<div class="col-4">
+		{% if ticket.image %}
+		<img src="{{ ticket.image.url }}" style="width: 100%;height: auto;"/>
+		<!-- <p>image: {{ ticket.image.url }}</p> -->
+		{% else %}
+		<!-- {{ MEDIA_URL }} doesn't work for some templates in folder, why ? -->
+		<img src="/media/images/no_pic" style="width: 100%;height: auto;"/>
+		{% endif %}
+	</div>
+</div>
+{% endblock content%}
+
+{% block buttons%}
+{% if page == 'feed' and not ticket.answered  %}
+<hr/>
+<div class="row justify-content-end">
+	<div class="col-auto">
+		<a class="btn btn-primary" href="{% url 'create_review' %}?ticket={{ ticket.id }}">Review</a>
+	</div>
+</div>
+{% elif page == 'posts' %}
+<hr/>
+<div class="row justify-content-end">
+	<div class="col-auto">
+		<a class="btn btn-primary" href="{% url 'delete_ticket' ticket_id=ticket.id %}">Delete</a>
+	</div>
+	<div class="col-auto">
+		<a class="btn btn-primary" href="{% url 'edit_ticket' ticket_id=ticket.id %}">Edit</a>
+	</div>
+</div>
+{% endif %}
+{% endblock buttons %}

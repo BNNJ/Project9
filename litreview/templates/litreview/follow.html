@@ -1,0 +1,50 @@
+{% extends "litreview/base.html" %}
+{% load custom_filters %}
+
+{% block content %}
+
+<div class="col-8">
+	{% include 'litreview/form_error.html' %}
+	<label for="id_followed_user" class="form-label">Select a user to follow: </label>
+	<form method="post">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col">
+				{{ form.followed_user|add_classes:'form-select' }}
+			</div>
+			<div class="col-auto">
+				<button type="submit" class="btn btn-primary btn-block">follow</button>
+			</div>
+		</div>
+	</form>
+
+	<div class="row p-2 gap-2">
+		<div class="col border rounded border-primary my-2 p-2">
+			<div class="row">
+				<div class="col">following:</div>
+			</div>
+			<hr/>
+			{% for user in followed %}
+			<div class="row my-1">
+				<div class="col">{{ user.username }}</div>
+				<div class="col-auto">
+					<a class="btn btn-primary btn-sm" href="{% url 'unfollow' user_id=user.id %}">unfollow</a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="col border rounded border-primary my-2 p-2">
+			<div class="row">
+				<div class="col">followers:</div>
+			</div>
+			<hr/>
+			{% for user in followers %}
+			<div class="row my-3">
+				<div class="col">{{ user.username }}</div>
+			</div>
+			{% endfor %}
+			</div>
+		</div>
+</div>
+
+{% endblock %}

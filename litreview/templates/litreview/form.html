@@ -1,0 +1,35 @@
+{% load custom_filters %}
+
+{% for field in form.visible_fields %}
+<div class="mb-3">
+	<label class="form-label" for="{{ field.name }}">{{ field.name }}</label>
+	{% if field.field.widget.input_type == 'radio' %}
+		{% for choice in field %}
+		<div class="form-check form-check-inline">
+			{{ choice }}
+		</div>
+		{% endfor %}
+	{% else %}
+		{{ field|add_classes:'form-control' }}
+	{% endif %}
+	{% if field.errors %}
+		{% for error in field.errors %}
+			<small class="form-text text-danger">{{ error }}</small>
+		{% endfor %}
+		<br/>
+	{% endif %}
+	{% if field.help_text %}
+		<small class="form-text text-muted">{{ field.help_text }}</small>
+	{% endif %}
+</div>
+{% endfor %}
+
+{% for field in form.hidden_fields %}
+	{{ field }}
+	{% if field.errors %}
+	{% for error in field.errors %}
+	<strong class="form-text text-danger">{{ error }} - {{field.name}}</strong>
+	{% endfor %}
+{% endif %}
+{% endfor %}
+

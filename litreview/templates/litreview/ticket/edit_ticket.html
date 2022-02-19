@@ -1,0 +1,29 @@
+{% extends "litreview/base.html" %}
+
+{% load custom_filters %}
+
+{% block content %}
+
+<div class="col-8">
+	{% include 'litreview/form_error.html' %}
+
+ 	<form enctype="multipart/form-data" method="post">
+ 		{% csrf_token %}
+		{% include 'litreview/form.html' with form=form only %}
+
+		<div class="row mt-1">
+			<div class="d-grid col">
+				{% if request.META.HTTP_REFERER %}
+				<a href="{{ request.META.HTTP_REFERER|escape }}" class="btn btn-primary">Go back</a>
+				{% else %}
+				<a href="{% url 'login' %}" class="btn btn-primary">Go to login</a>
+				{% endif %}
+			</div>
+			<div class="d-grid col">
+				<button type="submit" class="btn btn-primary">Edit Ticket</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+{% endblock %}

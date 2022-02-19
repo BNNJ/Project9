@@ -1,0 +1,35 @@
+{% extends "litreview/base.html" %}
+
+{% load custom_filters %}
+
+{% block content %}
+
+<div class="col-8">
+	{% include 'litreview/form_error.html' %}
+
+ 	<form enctype="multipart/form-data" method="post">
+ 		{% csrf_token %}
+ 		{% if ticket %}
+	 		{% include 'litreview/ticket/ticket.html' %}
+ 		{% else %}
+			{% include 'litreview/form.html' with form=ticket_form only %}
+		{% endif %}
+		<hr class="border-secondary" />
+		{% include 'litreview/form.html' with form=review_form only %}
+
+		<div class="row mt-1">
+			<div class="d-grid col-6">
+				{% if request.META.HTTP_REFERER %}
+				<a href="{{ request.META.HTTP_REFERER|escape }}" class="btn btn-primary">Go back</a>
+				{% else %}
+				<a href="{% url 'login' %}" class="btn btn-primary">Go to login</a>
+				{% endif %}
+			</div>
+			<div class="d-grid col-6">
+				<button type="submit" class="btn btn-primary">Create Review</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+{% endblock %}

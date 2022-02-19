@@ -1,0 +1,23 @@
+{% extends "litreview/base.html" %}
+
+{% block content %}
+
+<div class="col-4">
+	{% include 'litreview/form_error.html' %}
+
+ 	<form method="post">
+ 		{% csrf_token %}
+		{% include 'litreview/form.html' %}
+		<div class="row mt-1">
+			<div class="d-grid col-6">
+				<a href="{% url 'login' %}" class="btn btn-primary">Back to login</a>
+			</div>
+			<div class="d-grid col-6">
+				<button type="submit" class="btn btn-primary">Sign up</button>
+			</div>
+		</div>
+	</form>
+
+</div>
+
+{% endblock %}
