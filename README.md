@@ -28,5 +28,5 @@ run the webserver:
 {path/to/project}/manage.py runserver
 ```
 
-Then open a web browser and enter the url `localhost:8000/login`
-or [click here](localhost:8000/login)
+Then open a web browser and enter the url `localhost:8000/login`  
+or [click here](http:localhost:8000/login)
