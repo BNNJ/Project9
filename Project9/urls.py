@@ -35,6 +35,7 @@ urlpatterns = [
     path('ticket/<int:ticket_id>/delete/', views.delete_ticket, name='delete_ticket'),
     # path('ticket/', views.tickets, name='tickets'),
     path('feed/', views.feed, name="feed"),
+    path('', views.feed, name="root_feed"),
     path('posts/', views.posts, name="posts"),
     path('follow/', views.follow, name="follow"),
     path('unfollow/<int:user_id>', views.unfollow, name="unfollow"),
