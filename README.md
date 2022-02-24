@@ -28,5 +28,13 @@ run the webserver:
 {path/to/project}/manage.py runserver
 ```
 
-Then open a web browser and enter the url `localhost:8000/login`  
-or [click here](http:localhost:8000/login)
+Then open a web browser and enter the url `localhost:8000`  
+or [click here](http:localhost:8000)  
+
+Some pre-configured users are available:
+pascal  
+Eileen  
+JohnPaul  
+jimmy  
+the password is the same for all of them: `ocpass123`  
+additionally, an admin account is available with those credentials: admin/admin
