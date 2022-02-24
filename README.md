@@ -31,10 +31,12 @@ run the webserver:
 Then open a web browser and enter the url `localhost:8000`  
 or [click here](http:localhost:8000)  
 
-Some pre-configured users are available:
+Some pre-configured users are available:  
 pascal  
 Eileen  
 JohnPaul  
 jimmy  
 the password is the same for all of them: `ocpass123`  
+Some reviews and tickets have been added for all of them.
+
 additionally, an admin account is available with those credentials: admin/admin
