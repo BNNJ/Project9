@@ -1,6 +1,6 @@
 # Project9
 
-Literrature reviews website based on Django.
+Literature reviews website based on Django.
 
 ## Setup
 
