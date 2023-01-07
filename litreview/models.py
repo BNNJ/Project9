@@ -44,6 +44,3 @@ class UserFollows(models.Model):
 
     def __str__(self):
         return f"{self.user.username} -> {self.followed_user.username}"
-
-    # def __repr__(self):
-    # 	return f"{self.user.username} -> {self.followed_user.username}"

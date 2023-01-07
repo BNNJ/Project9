@@ -18,10 +18,3 @@ class ReviewForm(ModelForm):
         # exclude = ['user', ]
         fields = "__all__"
         widgets = {"user": HiddenInput, "ticket": HiddenInput, "rating": RadioSelect}
-
-
-class TestForm(ModelForm):
-    class Meta:
-        model = Review
-        fields = "__all__"
-        widgets = {"rating": RadioSelect()}

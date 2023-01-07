@@ -88,9 +88,6 @@ def delete_ticket(request, ticket_id):
 @login_required
 def create_review(request):
     ticket = request.GET.get("ticket")
-    if Review.objects.filter(ticket_id=ticket):
-        pass
-        # redirect('review_already_exists')
 
     if request.method == "POST":
         user = request.user
@@ -122,7 +119,6 @@ def create_review(request):
             else:
                 print(data.get("rform-rating"))
                 return redirect("create_review")
-                # return create_ticket(request, ticket.id)
     else:
         if ticket:
             ticket = Ticket.objects.get(id=ticket)
